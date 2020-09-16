@@ -14,6 +14,7 @@ dependencies:
   get: ^3.10.2
   hive: ^1.4.4
   flutter_slidable: ^0.5.7
+  qr_code_scanner: ^0.0.13
 
 dev_dependencies:
   flutter_test:

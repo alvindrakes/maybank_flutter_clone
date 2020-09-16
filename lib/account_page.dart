@@ -9,6 +9,23 @@ class AccountPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            DrawerHeader(
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage("images/header.jpeg"),
+                      fit: BoxFit.cover)),
+              child: Text("Header"),
+            ),
+            ListTile(
+              title: Text("Home"),
+            )
+          ],
+        ),
+      ),
       body: Stack(
         children: <Widget>[
           Column(
@@ -90,7 +107,12 @@ class _CustomNavigationBar extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Icon(Icons.line_style),
+            GestureDetector(
+              onTap: () {
+                Scaffold.of(context).openDrawer();
+              },
+              child: Icon(Icons.line_style),
+            ),
             GestureDetector(
               onTap: () {}, //TODO add bottom sheet when tap
               child: Container(

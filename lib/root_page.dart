@@ -65,7 +65,7 @@ class _RootPageState extends State<RootPage> {
           case 2:
             return CupertinoTabView(
               navigatorKey: thirdTabNavKey,
-              builder: (BuildContext context) => QRPage(),
+              builder: (BuildContext context) => QRpayPage(),
             );
             break;
           case 3:
