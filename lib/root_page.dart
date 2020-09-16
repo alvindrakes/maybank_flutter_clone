@@ -24,7 +24,7 @@ class _RootPageState extends State<RootPage> {
   Widget build(BuildContext context) {
     return CupertinoTabScaffold(
       tabBar: CupertinoTabBar(
-        backgroundColor: ThemeColors.darkGrey.withOpacity(1.0),
+        backgroundColor: ThemeColors.kdarkGrey.withOpacity(1.0),
         items: [
           BottomNavigationBarItem(
             icon: Icon(CupertinoIcons.home),

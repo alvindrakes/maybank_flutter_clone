@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
 
 class ThemeColors {
-  static const darkGrey = CupertinoColors.darkBackgroundGray;
+  static const kdarkGrey = CupertinoColors.darkBackgroundGray;
 }

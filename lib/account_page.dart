@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
@@ -7,41 +9,132 @@ class AccountPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Column(
-      children: [
-        Container(
-          height: 240,
-          width: Get.width,
-        ),
-        Container(
-          decoration: BoxDecoration(
-            border: Border(
-              bottom: BorderSide(
-                width: 0.3,
-                color: Colors.grey,
-              ),
-            ),
-          ),
-          padding:
-              const EdgeInsets.only(top: 10, bottom: 10, left: 30, right: 30),
-          child: Container(
-            width: Get.width,
-            height: 90,
-            color: Colors.yellow,
-          ),
-        ),
-        Expanded(
-          child: ListView(
-            padding: const EdgeInsets.all(0),
-            shrinkWrap: true,
+      body: Stack(
+        children: <Widget>[
+          Column(
             children: [
-              _SavingAccountRow(),
-              _MaeRow(),
+              _UpperRow(),
+              Container(
+                decoration: BoxDecoration(
+                  border: Border(
+                    bottom: BorderSide(
+                      width: 0.3,
+                      color: Colors.grey,
+                    ),
+                  ),
+                ),
+                padding: const EdgeInsets.only(
+                    top: 10, bottom: 10, left: 30, right: 30),
+                child: Container(
+                  width: Get.width,
+                  height: 90,
+                  color: Colors.yellow,
+                ),
+              ),
+              Expanded(
+                child: ListView(
+                  padding: const EdgeInsets.all(0),
+                  shrinkWrap: true,
+                  children: [
+                    _SavingAccountRow(),
+                    _MaeRow(),
+                  ],
+                ),
+              )
             ],
           ),
-        )
+          _CustomNavigationBar(),
+        ],
+      ),
+    );
+  }
+}
+
+class _UpperRow extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: <Widget>[
+        Image.asset("assets/images/malaysia_map.jpg"),
+        BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
+          child: Container(
+            width: Get.width,
+            height: 260.0,
+            decoration: BoxDecoration(
+              color: Colors.blue,
+            ),
+            child: Center(
+                child: Text(
+              'RM 100,000',
+              style: TextStyle(
+                fontSize: 22,
+                color: Colors.white,
+              ),
+            )),
+          ),
+        ),
       ],
-    ));
+    );
+  }
+}
+
+class _CustomNavigationBar extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Container(
+        height: kToolbarHeight,
+        padding: const EdgeInsets.symmetric(horizontal: 10),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Icon(Icons.line_style),
+            GestureDetector(
+              onTap: () {}, //TODO add bottom sheet when tap
+              child: Container(
+                  padding: const EdgeInsets.only(
+                      left: 10, right: 10, top: 8, bottom: 8),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(30.0),
+                    color: Colors.grey[300],
+                  ),
+                  child: Row(
+                    children: [
+                      Text(
+                        "Accounts",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      Icon(
+                        Icons.keyboard_arrow_down,
+                        color: Colors.white,
+                        size: 18,
+                      ),
+                    ],
+                  )),
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  Icons.lock_open,
+                  size: 14,
+                  color: Colors.white,
+                ),
+                Text(
+                  "Log out",
+                  style: TextStyle(
+                    fontSize: 12,
+                    color: Colors.white,
+                  ),
+                ),
+              ],
+            )
+          ],
+        ),
+      ),
+    );
   }
 }
 
@@ -58,20 +151,20 @@ class _SavingAccountRow extends StatelessWidget {
       secondaryActions: [
         IconSlideAction(
           caption: 'PAY',
-          color: ThemeColors.darkGrey,
+          color: ThemeColors.kdarkGrey,
           icon: Icons.more_horiz,
 
           // onTap: () => _showSnackBar('More'),
         ),
         IconSlideAction(
           caption: 'TRANSFER',
-          color: ThemeColors.darkGrey,
+          color: ThemeColors.kdarkGrey,
           icon: Icons.delete,
           //onTap: () => _showSnackBar('Delete'),
         ),
         IconSlideAction(
           caption: 'MOBILE',
-          color: ThemeColors.darkGrey,
+          color: ThemeColors.kdarkGrey,
           icon: Icons.delete,
           //onTap: () => _showSnackBar('Delete'),
         ),
@@ -137,7 +230,7 @@ class _MaeRow extends StatelessWidget {
       secondaryActions: [
         IconSlideAction(
           caption: 'View MAE dashboard',
-          color: ThemeColors.darkGrey,
+          color: ThemeColors.kdarkGrey,
           icon: Icons.more_horiz,
 
           // onTap: () => _showSnackBar('More'),
